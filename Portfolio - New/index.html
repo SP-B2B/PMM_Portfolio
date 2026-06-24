@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soma Prakash — Product Marketing, Technical Marketing & Product Communications</title>
+<meta name="description" content="Product Marketing, Technical Marketing and Product Communications professional helping SaaS and cybersecurity companies position products, support launches, and build market credibility.">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+
+/* ── Industry ticker ─────────────────────────────────── */
+.ticker-outer {
+  overflow: hidden;
+  margin-top: 48px;
+  padding: 0;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+}
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: ticker-scroll 28s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track { animation: none; }
+}
+.ticker-track:hover { animation-play-state: paused; }
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-right: 40px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.ticker-item::after {
+  content: "";
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  flex-shrink: 0;
+}
+
+/* ── Highlights grid ─────────────────────────────────── */
+.highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+.highlight-item {
+  position: relative;
+  background: var(--bg-surface);
+  padding: 28px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background 0.2s ease;
+}
+.highlight-item::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.highlight-item:hover { background: var(--bg-surface-2); }
+.highlight-item:hover::before { opacity: 1; }
+.highlight-item .h-value {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.highlight-item .h-label {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+/* ── Expertise cards ─────────────────────────────────── */
+.expertise-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-m);
+  overflow: hidden;
+}
+.expertise-card {
+  background: var(--bg-surface);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: background 0.2s ease;
+}
+.expertise-card:hover { background: var(--bg-surface-2); }
+.expertise-card .ex-rule {
+  width: 28px; height: 2px;
+  background: var(--gradient);
+  border-radius: 2px;
+}
+.expertise-card h3 { font-size: 16.5px; font-weight: 600; line-height: 1.3; margin: 0; }
+.expertise-card p  { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin: 0; }
+
+/* ── Challenge cards ─────────────────────────────────── */
+.challenges-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.challenge-card {
+  position: relative;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-l);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+.challenge-card::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--gradient);
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.challenge-card:hover { border-color: var(--border-strong); background: var(--bg-surface-2); }
+.challenge-card:hover::before { opacity: 1; }
+.challenge-card h3 {
+  font-size: 19px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--text-primary);
+}
+.challenge-card .ch-problem {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}
+.challenge-card .ch-solution {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+/* last card full-width when count is odd */
+.challenge-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 8px);
+}
+
+/* ── CTA strip ───────────────────────────────────────── */
+.cta-strip {
+  position: relative;
+  background: linear-gradient(115deg, #0f1827 0%, #131929 40%, #0e1520 100%);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  overflow: hidden;
+  padding: 80px 0;
+}
+.cta-strip::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 80% at 60% 50%, rgba(91,140,255,0.12) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 60% at 20% 30%, rgba(157,123,255,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.cta-strip .container {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto;
+}
+.cta-strip h2 {
+  font-size: clamp(26px, 3.5vw, 38px);
+  background: linear-gradient(180deg, #ffffff 0%, #c7d2e8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 14px;
+}
+.cta-strip p {
+  font-size: 16.5px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+.cta-strip .strip-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.btn-linkedin {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  padding: 13px 22px;
+  border-radius: var(--radius-s);
+  background: var(--gradient);
+  color: #060810;
+  border: 1px solid transparent;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-decoration: none;
+}
+.btn-linkedin:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -8px rgba(91,140,255,0.45);
+}
+.btn-linkedin svg { flex-shrink: 0; }
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .highlights-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (max-width: 880px) {
+  .highlights-grid { grid-template-columns: repeat(2, 1fr); }
+  .expertise-cards { grid-template-columns: repeat(2, 1fr); }
+  .challenges-grid { grid-template-columns: 1fr; }
+  .challenge-card:last-child:nth-child(odd) { grid-column: auto; max-width: 100%; }
+}
+@media (max-width: 560px) {
+  .highlights-grid { grid-template-columns: 1fr; }
+  .expertise-cards { grid-template-columns: 1fr; }
+  .cta-strip { padding: 56px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Navigation ──────────────────────────────────────────── -->
+<nav class="site-nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo"><span class="mark"></span>Soma Prakash</a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- ── Hero ────────────────────────────────────────────────── -->
+<header class="hero">
+  <div class="grid-texture"></div>
+  <div class="container">
+    <div class="hero-inner reveal">
+      <h1>Turning Complex Products Into Clear Market Narratives</h1>
+      <p class="subhead">Product Marketing, Technical Marketing, and Product Communications professional helping SaaS and cybersecurity companies position products, support launches, and build market credibility.</p>
+      <div class="hero-actions">
+        <a href="case-studies.html" class="btn btn-primary">View Case Studies <span class="btn-arrow">→</span></a>
+        <a href="assets/pdf/Soma_Prakash_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+      </div>
+      <!-- Ticker: no divider, no label, supporting proof only -->
+      <div class="ticker-outer">
+        <div class="ticker-track">
+          <!-- duplicated for seamless loop -->
+          <span class="ticker-item">Cybersecurity</span>
+          <span class="ticker-item">SaaS</span>
+          <span class="ticker-item">Enterprise Software</span>
+          <span class="ticker-item">AI</span>
+          <span class="ticker-item">Healthcare Technology</span>
+          <span class="ticker-item">Robotics &amp; Automation</span>
+          <span class="ticker-item">Retail Technology</span>
+          <span class="ticker-item">Cybersecurity</span>
+          <span class="ticker-item">SaaS</span>
+          <span class="ticker-item">Enterprise Software</span>
+          <span class="ticker-item">AI</span>
+          <span class="ticker-item">Healthcare Technology</span>
+          <span class="ticker-item">Robotics &amp; Automation</span>
+          <span class="ticker-item">Retail Technology</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ── Professional Experience & Impact ────────────────────── -->
+<section class="section-tight">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Professional Experience &amp; Impact</span>
+    </div>
+    <div class="highlights-grid reveal">
+      <div class="highlight-item">
+        <div class="h-value">5 Years</div>
+        <div class="h-label">Experience in product communications, technical marketing, and product marketing</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-value">25+ Companies</div>
+        <div class="h-label">B2B SaaS companies supported across cybersecurity, AI, healthcare, and enterprise software</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-value">10+ Whitepapers</div>
+        <div class="h-label">Enterprise whitepapers covering CTEM, Exposure Management, and Third-Party Risk Management</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-value">4 Positioning Projects</div>
+        <div class="h-label">Product positioning and repositioning initiatives across cybersecurity and B2B SaaS</div>
+      </div>
+      <div class="highlight-item">
+        <div class="h-value">Global Teams</div>
+        <div class="h-label">Cross-functional collaboration with stakeholders across India, US, UK, APAC, and EMEA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider container">
+
+<!-- ── Product Positioning, Launch & Repositioning Projects ── -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product Positioning, Launch &amp; Repositioning Projects</span>
+      <h2>Selected Product Marketing &amp; Technical Marketing Work</h2>
+    </div>
+    <div class="cs-grid">
+
+      <a href="case-study-cybermindr-positioning.html" class="cs-card reveal">
+        <span class="cs-org">CyberMindr · Cybersecurity SaaS</span>
+        <h3>CyberMindr Positioning &amp; Messaging Transformation</h3>
+        <p class="summary">Building the positioning, messaging, and category narrative that transformed i-Radar into CyberMindr.</p>
+        <div class="skill-grid">
+          <span class="pill">Positioning</span>
+          <span class="pill">Messaging</span>
+          <span class="pill">Competitive Analysis</span>
+          <span class="pill">Buyer Personas</span>
+          <span class="pill">Category Narrative</span>
+        </div>
+        <span class="read-link">View Case Study <span class="arrow">→</span></span>
+      </a>
+
+      <a href="case-study-ryzeup-launch.html" class="cs-card reveal">
+        <span class="cs-org">RyzeUp · Employee Engagement SaaS</span>
+        <h3>RyzeUp Product Naming &amp; Launch</h3>
+        <p class="summary">Helping launch an employee engagement platform through product naming, brand development, website strategy, and market-facing communications.</p>
+        <div class="skill-grid">
+          <span class="pill">Product Naming</span>
+          <span class="pill">Brand Development</span>
+          <span class="pill">Messaging Strategy</span>
+          <span class="pill">Launch Communications</span>
+        </div>
+        <span class="read-link">View Case Study <span class="arrow">→</span></span>
+      </a>
+
+      <a href="case-study-hellogard.html" class="cs-card reveal">
+        <span class="cs-org">HelloGard · Robotics / Fleet SaaS</span>
+        <h3>HelloGard Repositioning</h3>
+        <p class="summary">Transforming a robotics company from a hardware-focused reseller narrative into a software-first fleet intelligence platform.</p>
+        <div class="skill-grid">
+          <span class="pill">Repositioning</span>
+          <span class="pill">Messaging Strategy</span>
+          <span class="pill">Value Proposition</span>
+          <span class="pill">SaaS Positioning</span>
+        </div>
+        <span class="read-link">View Case Study <span class="arrow">→</span></span>
+      </a>
+
+      <a href="case-study-cybermindr-thought-leadership.html" class="cs-card reveal">
+        <span class="cs-org">CyberMindr · Thought Leadership Program</span>
+        <h3>Building CyberMindr's Thought Leadership &amp; Market Education Function</h3>
+        <p class="summary">Establishing CyberMindr's market voice, educational content ecosystem, and thought leadership program from the ground up.</p>
+        <div class="skill-grid">
+          <span class="pill">Thought Leadership</span>
+          <span class="pill">Market Education</span>
+          <span class="pill">Sales Enablement</span>
+          <span class="pill">Technical Marketing</span>
+        </div>
+        <span class="read-link">View Case Study <span class="arrow">→</span></span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider container">
+
+<!-- ── Product Marketing & Technical Marketing Experience ───── -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Product Marketing &amp; Technical Marketing Experience</span>
+      <h2>Areas of Expertise</h2>
+    </div>
+    <div class="expertise-cards">
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Product Positioning</h3>
+        <p>Developing category narratives, value propositions, competitive differentiation, and market positioning strategies that help products stand out in competitive markets.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Messaging Strategy</h3>
+        <p>Building messaging frameworks, audience-specific value propositions, buyer-focused narratives, and website messaging that connect product capabilities to customer outcomes.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Product Communications</h3>
+        <p>Supporting product launches, release communications, product documentation, customer-facing updates, and go-to-market initiatives.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Technical Marketing</h3>
+        <p>Translating complex technical concepts into language that customers, executives, and sales teams can understand and act upon.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Sales Enablement</h3>
+        <p>Developing whitepapers, presentations, executive communications, customer education assets, and sales support materials that strengthen buyer conversations.</p>
+      </div>
+      <div class="expertise-card reveal">
+        <div class="ex-rule"></div>
+        <h3>Thought Leadership &amp; Market Education</h3>
+        <p>Creating educational content, webinars, executive thought leadership programs, and industry-facing resources that build credibility and support market awareness.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider container">
+
+<!-- ── Common Challenges ────────────────────────────────────── -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Common Challenges</span>
+      <h2>Common Challenges I Help SaaS and Cybersecurity Companies Solve</h2>
+    </div>
+    <div class="challenges-grid">
+
+      <div class="challenge-card reveal">
+        <h3>Your Product Is Difficult to Explain</h3>
+        <p class="ch-problem">Customers understand features but struggle to understand why they matter.</p>
+        <p class="ch-solution">Positioning, messaging frameworks, value propositions, and category narratives that make your product's value clear to the buyers who need to act on it.</p>
+      </div>
+
+      <div class="challenge-card reveal">
+        <h3>Your Website Doesn't Reflect Your Product</h3>
+        <p class="ch-problem">The product has evolved, but the messaging still tells an outdated story.</p>
+        <p class="ch-solution">Website messaging strategy, information architecture, homepage narratives, and product page copy that accurately reflects what the product does and why it matters.</p>
+      </div>
+
+      <div class="challenge-card reveal">
+        <h3>You're Launching New Features or Products</h3>
+        <p class="ch-problem">You need launch communications that connect product capabilities to customer outcomes.</p>
+        <p class="ch-solution">Product launch messaging, release communications, customer-facing updates, and go-to-market materials built around what customers need to understand — not just what was shipped.</p>
+      </div>
+
+      <div class="challenge-card reveal">
+        <h3>Sales Teams Need Better Customer Conversations</h3>
+        <p class="ch-problem">Technical capabilities are not translating into compelling buyer narratives.</p>
+        <p class="ch-solution">Sales enablement assets, executive communications, and educational content that give sales teams a clear, credible story to take into buyer conversations.</p>
+      </div>
+
+      <div class="challenge-card reveal">
+        <h3>You're Building Thought Leadership</h3>
+        <p class="ch-problem">You want to educate your market, establish credibility, and support long-term awareness.</p>
+        <p class="ch-solution">Whitepapers, webinars, market education programs, and executive thought leadership built around a content strategy that connects to your positioning and supports pipeline over time.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA Strip ────────────────────────────────────────────── -->
+<div class="cta-strip">
+  <div class="container reveal">
+    <h2>Ready to improve how customers understand your product?</h2>
+    <p>Whether you're refining positioning, launching a product, or improving customer communication, I'd be happy to learn more about what you're working on.</p>
+    <div class="strip-actions">
+      <a href="https://linkedin.com/in/somaprakash" target="_blank" rel="noopener" class="btn-linkedin">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+        </svg>
+        Let's Connect
+      </a>
+      <a href="assets/pdf/Soma_Prakash_Resume.pdf" download class="btn btn-secondary">Download Resume</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── Footer ───────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="foot-left">© 2026 Soma Prakash — Product Marketing / Technical Marketing / Product Communications</div>
+    <ul class="foot-links">
+      <li><a href="https://linkedin.com/in/somaprakash" target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href="mailto:somaaprakash@gmail.com">Email</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+</footer>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
